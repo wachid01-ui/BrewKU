@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">BrewKu</string>
+    <string name="app_tagline">Teman Seduh Kopimu</string>
+    <string name="home_greeting">Mau seduh apa hari ini?</string>
+    <string name="home_subtitle">Pilih metode, ikuti langkah, nikmati kopi.</string>
+
+    <!-- Filters -->
+    <string name="filter_all">Semua</string>
+    <string name="filter_minimal_tools">Alat Minimal</string>
+    <string name="filter_arabica">Arabika</string>
+    <string name="filter_robusta">Robusta</string>
+    <string name="filter_cold">Seduh Dingin</string>
+
+    <!-- Coffee Doctor / Troubleshoot -->
+    <string name="coffee_doctor_title">Dokter Kopi</string>
+    <string name="coffee_doctor_subtitle">Kopi terlalu pahit, asam, atau encer? Cek solusinya di sini</string>
+    <string name="coffee_doctor_banner_btn">Konsultasi Rasa</string>
+
+    <!-- Recipe Detail & Calculator -->
+    <string name="label_coffee_dose">Takaran Kopi (Gram)</string>
+    <string name="label_water_volume">Kebutuhan Air (ml)</string>
+    <string name="label_ratio">Rasio Seduhan</string>
+    <string name="label_water_temp">Suhu Air</string>
+    <string name="label_grind_size">Ukuran Gilingan</string>
+    <string name="label_duration">Estimasi Durasi</string>
+    <string name="btn_start_brew">Mulai Menyeduh</string>
+
+    <!-- Timer Screen -->
+    <string name="timer_phase">Tahap %1$d dari %2$d</string>
+    <string name="timer_target_water">Target Air: %1$d ml</string>
+    <string name="timer_done">Selesai</string>
+    <string name="timer_next_step">Tahap Berikutnya</string>
+    <string name="timer_reset">Ulangi</string>
+
+    <!-- Result Screen -->
+    <string name="result_title">Kopi Siap Dinikmati! ☕</string>
+    <string name="result_subtitle">Aroma dan rasanya sudah maksimal. Bagaimana seduhanmu kali ini?</string>
+    <string name="result_btn_eval">Evaluasi Rasa (Dokter Kopi)</string>
+    <string name="result_btn_home">Kembali ke Beranda</string>
+</resources>
