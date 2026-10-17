@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.brewku.app.ads.InterstitialAdManager
 import com.brewku.app.data.model.Recipe
 import com.brewku.app.ui.screens.BrewResultScreen
 import com.brewku.app.ui.screens.BrewTimerScreen
@@ -34,20 +35,27 @@ sealed interface Screen {
 
 class MainActivity : ComponentActivity() {
 
+    private lateinit var interstitialAdManager: InterstitialAdManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // Preload Interstitial Ad segera setelah Activity dibuat
+        interstitialAdManager = InterstitialAdManager(this)
+
         setContent {
             BrewKuTheme {
-                BrewKuAppNavigator()
+                BrewKuAppNavigator(interstitialAdManager = interstitialAdManager)
             }
         }
     }
 }
 
 @Composable
-fun BrewKuAppNavigator() {
+fun BrewKuAppNavigator(
+    interstitialAdManager: InterstitialAdManager
+) {
     var currentScreen by remember { mutableStateOf<Screen>(Screen.Home) }
 
     BackHandler(enabled = currentScreen !is Screen.Home) {
@@ -101,6 +109,7 @@ fun BrewKuAppNavigator() {
                     recipe = screen.recipe,
                     coffeeGrams = screen.coffeeGrams,
                     waterVolumeMl = screen.waterVolumeMl,
+                    interstitialAdManager = interstitialAdManager,
                     onGoHome = { currentScreen = Screen.Home },
                     onOpenDoctor = { currentScreen = Screen.Doctor }
                 )

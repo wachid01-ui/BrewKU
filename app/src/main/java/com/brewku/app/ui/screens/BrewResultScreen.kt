@@ -29,7 +29,6 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,19 +43,18 @@ import com.brewku.app.ads.InterstitialAdManager
 import com.brewku.app.data.model.Recipe
 import com.brewku.app.ui.theme.BadgeGreen
 import com.brewku.app.ui.theme.CaramelAmber
-import com.brewku.app.ui.theme.EspressoDark
 
 @Composable
 fun BrewResultScreen(
     recipe: Recipe,
     coffeeGrams: Float,
     waterVolumeMl: Int,
+    interstitialAdManager: InterstitialAdManager,
     onGoHome: () -> Unit,
     onOpenDoctor: () -> Unit
 ) {
     val context = LocalContext.current
     val activity = context as? Activity
-    val interstitialAdManager = remember { InterstitialAdManager(context) }
 
     fun handleGoHome() {
         if (activity != null) {
@@ -65,6 +63,16 @@ fun BrewResultScreen(
             }
         } else {
             onGoHome()
+        }
+    }
+
+    fun handleOpenDoctor() {
+        if (activity != null) {
+            interstitialAdManager.showAfterBrewComplete(activity) {
+                onOpenDoctor()
+            }
+        } else {
+            onOpenDoctor()
         }
     }
 
@@ -178,7 +186,7 @@ fun BrewResultScreen(
             Column(modifier = Modifier.fillMaxWidth()) {
                 // Coffee Doctor Button
                 Button(
-                    onClick = onOpenDoctor,
+                    onClick = { handleOpenDoctor() },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(52.dp),
