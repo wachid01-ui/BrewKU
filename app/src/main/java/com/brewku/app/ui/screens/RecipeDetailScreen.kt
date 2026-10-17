@@ -337,13 +337,8 @@ fun RecipeDetailScreen(
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            itemsIndexed(recipe.steps) { index, step ->
-                // Calculate scaled water for this step
-                val stepTargetWater = if (recipe.steps.lastIndex == index) {
-                    calculatedWater
-                } else if (step.targetWaterMl > 0) {
-                    (calculatedWater * (step.targetWaterMl.toFloat() / recipe.calculateWater(recipe.defaultCoffeeGrams))).toInt()
-                } else 0
+            itemsIndexed(recipe.steps) { _, step ->
+                val stepTargetWater = step.getTargetWater(calculatedWater)
 
                 Row(
                     modifier = Modifier
@@ -392,7 +387,7 @@ fun RecipeDetailScreen(
                         }
                         Spacer(modifier = Modifier.height(3.dp))
                         Text(
-                            text = step.instruction,
+                            text = step.getFormattedInstruction(coffeeGrams, calculatedWater),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 12.sp,
                             lineHeight = 16.sp

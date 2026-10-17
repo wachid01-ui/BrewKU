@@ -83,10 +83,22 @@ enum class CoffeeType(
 data class BrewStep(
     val stepNumber: Int,
     val title: String,
-    val instruction: String,
-    val targetWaterMl: Int,
+    val instructionTemplate: String,
+    val waterPercentage: Float = 0f, // 0.0f - 1.0f
     val durationSeconds: Int
-)
+) {
+    fun getTargetWater(totalWaterMl: Int): Int {
+        return (totalWaterMl * waterPercentage).toInt()
+    }
+
+    fun getFormattedInstruction(coffeeGrams: Float, totalWaterMl: Int): String {
+        val targetWater = getTargetWater(totalWaterMl)
+        return instructionTemplate
+            .replace("{coffeeGrams}", coffeeGrams.toInt().toString())
+            .replace("{targetWater}", targetWater.toString())
+            .replace("{totalWater}", totalWaterMl.toString())
+    }
+}
 
 data class Recipe(
     val id: String,

@@ -118,11 +118,7 @@ fun BrewTimerScreen(
     }
 
     // Calculate step water scaled to current volume
-    val stepTargetWater = if (currentStepIndex == recipe.steps.lastIndex) {
-        waterVolumeMl
-    } else if (currentStep.targetWaterMl > 0) {
-        (waterVolumeMl * (currentStep.targetWaterMl.toFloat() / recipe.calculateWater(recipe.defaultCoffeeGrams))).toInt()
-    } else 0
+    val stepTargetWater = currentStep.getTargetWater(waterVolumeMl)
 
     val progress by animateFloatAsState(
         targetValue = if (currentStep.durationSeconds > 0) {
@@ -259,7 +255,7 @@ fun BrewTimerScreen(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = currentStep.instruction,
+                        text = currentStep.getFormattedInstruction(coffeeGrams, waterVolumeMl),
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 13.sp,
                         lineHeight = 18.sp,

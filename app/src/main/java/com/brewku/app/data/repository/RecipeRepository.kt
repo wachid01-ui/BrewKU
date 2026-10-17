@@ -25,29 +25,29 @@ object RecipeRepository {
                 BrewStep(
                     stepNumber = 1,
                     title = "Basahi Kertas Saring & Bilas",
-                    instruction = "Bilas filter paper dengan air panas untuk membuang bau kertas, lalu buang air bilasan di server.",
-                    targetWaterMl = 0,
+                    instructionTemplate = "Bilas filter paper dengan air panas untuk membuang bau kertas, lalu buang air bilasan di server.",
+                    waterPercentage = 0f,
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 2,
                     title = "Blooming (Pelepasan Gas CO2)",
-                    instruction = "Tuang air 45 ml secara memutar pelan. Diamkan kopi memuai dan melepaskan aroma terbaiknya.",
-                    targetWaterMl = 45,
+                    instructionTemplate = "Tuang air {targetWater} ml secara memutar pelan. Diamkan kopi memuai dan melepaskan aroma terbaiknya.",
+                    waterPercentage = 0.20f, // 20% dari total air
                     durationSeconds = 45
                 ),
                 BrewStep(
                     stepNumber = 3,
                     title = "Tuangan Pertama (Rasa Pokok)",
-                    instruction = "Tuang air perlahan melingkar dari tengah ke luar hingga total air mencapai 135 ml.",
-                    targetWaterMl = 135,
+                    instructionTemplate = "Tuang air perlahan melingkar dari tengah ke luar hingga timbangan mencapai {targetWater} ml.",
+                    waterPercentage = 0.60f, // 60% dari total air
                     durationSeconds = 45
                 ),
                 BrewStep(
                     stepNumber = 4,
                     title = "Tuangan Kedua & Tiriskan",
-                    instruction = "Tuang sisa air hingga mencapai 225 ml. Goyangkan dripper perlahan sekali, tunggu air tiris sempurna.",
-                    targetWaterMl = 225,
+                    instructionTemplate = "Tuang sisa air hingga mencapai total {totalWater} ml. Goyangkan dripper perlahan sekali, tunggu air tiris sempurna.",
+                    waterPercentage = 1.0f, // 100% total air
                     durationSeconds = 60
                 )
             )
@@ -60,7 +60,7 @@ object RecipeRepository {
             method = BrewMethod.TUBRUK,
             coffeeType = CoffeeType.ROBUSTA,
             defaultCoffeeGrams = 14f,
-            defaultRatio = 14f, // 1:14 = 196 ~ 200ml
+            defaultRatio = 15f, // 1:15 = 210ml
             grindSize = "Fine / Bubuk Pasar Halus",
             waterTemp = "88°C - 90°C (tidak langsung dari mendidih)",
             isMinimalToolFriendly = true,
@@ -70,29 +70,29 @@ object RecipeRepository {
                 BrewStep(
                     stepNumber = 1,
                     title = "Masukkan Kopi ke Cangkir",
-                    instruction = "Masukkan 1 sendok makan munjung kopi bubuk (~14 gram) ke dalam cangkir favoritmu.",
-                    targetWaterMl = 0,
+                    instructionTemplate = "Masukkan {coffeeGrams} gram bubuk kopi ke dalam cangkir favoritmu.",
+                    waterPercentage = 0f,
                     durationSeconds = 20
                 ),
                 BrewStep(
                     stepNumber = 2,
                     title = "Tuang Air Panas Setengah Cangkir",
-                    instruction = "Tuang air panas sekitar 80 ml, diamkan 30 detik agar bubuk kopi terbasahi merata.",
-                    targetWaterMl = 80,
+                    instructionTemplate = "Tuang air panas sekitar {targetWater} ml, diamkan 30 detik agar bubuk kopi terbasahi merata.",
+                    waterPercentage = 0.40f, // 40% air
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 3,
                     title = "Isi Penuh & Aduk 5 Kali",
-                    instruction = "Tuang air hingga penuh (~200 ml). Aduk perlahan sebanyak 4-5 kali putaran saja.",
-                    targetWaterMl = 200,
+                    instructionTemplate = "Tuang air hingga penuh ({totalWater} ml). Aduk perlahan sebanyak 4-5 kali putaran saja.",
+                    waterPercentage = 1.0f, // 100% air
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 4,
                     title = "Tunggu Ampas Tenggelam (Crust Break)",
-                    instruction = "Diamkan selama 3 menit. Ampas kopi akan otomatis turun ke dasar. Jika ada buih di atas, sisihkan dengan sendok.",
-                    targetWaterMl = 200,
+                    instructionTemplate = "Diamkan selama 3 menit. Ampas kopi akan otomatis turun ke dasar. Jika ada buih di atas, sisihkan dengan sendok.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 180
                 )
             )
@@ -105,7 +105,7 @@ object RecipeRepository {
             method = BrewMethod.FRENCH_PRESS,
             coffeeType = CoffeeType.BLEND,
             defaultCoffeeGrams = 18f,
-            defaultRatio = 14f, // 1:14 = 252ml
+            defaultRatio = 15f, // 1:15 = 270ml
             grindSize = "Coarse (Kasar mirip garam laut / pasir pantai)",
             waterTemp = "92°C - 94°C",
             isMinimalToolFriendly = false,
@@ -115,22 +115,22 @@ object RecipeRepository {
                 BrewStep(
                     stepNumber = 1,
                     title = "Tuang Kopi & Seluruh Air",
-                    instruction = "Masukkan bubuk kopi kasar ke wadah French Press. Tuang langsung 250 ml air panas ke atasnya.",
-                    targetWaterMl = 250,
+                    instructionTemplate = "Masukkan {coffeeGrams}g bubuk kopi kasar ke wadah French Press. Tuang langsung seluruh {totalWater} ml air panas ke atasnya.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 2,
                     title = "Rendam Penuh (Steeping)",
-                    instruction = "Pasang plunger di atasnya (jangan ditekan). Biarkan kopi terekstraksi perlahan selama 4 menit.",
-                    targetWaterMl = 250,
+                    instructionTemplate = "Pasang plunger di atasnya (jangan ditekan). Biarkan kopi terekstraksi perlahan selama 4 menit.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 240
                 ),
                 BrewStep(
                     stepNumber = 3,
                     title = "Tekan Plunger Pelan-Pelan",
-                    instruction = "Tekan batang plunger ke bawah perlahan dan stabil. Jangan dipaksa sampai dasar. Siap tuang ke cangkir!",
-                    targetWaterMl = 250,
+                    instructionTemplate = "Tekan batang plunger ke bawah perlahan dan stabil. Jangan dipaksa sampai dasar. Siap tuang {totalWater} ml kopi ke cangkir!",
+                    waterPercentage = 1.0f,
                     durationSeconds = 30
                 )
             )
@@ -153,22 +153,22 @@ object RecipeRepository {
                 BrewStep(
                     stepNumber = 1,
                     title = "Campur Kopi & Air di Botol",
-                    instruction = "Masukkan 30g bubuk kopi ke dalam toples/botol kaca, tambahkan 300ml air suhu ruangan. Aduk hingga rata.",
-                    targetWaterMl = 300,
+                    instructionTemplate = "Masukkan {coffeeGrams}g bubuk kopi ke toples/botol kaca, tambahkan {totalWater} ml air suhu ruangan. Aduk hingga rata.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 60
                 ),
                 BrewStep(
                     stepNumber = 2,
                     title = "Tutup Rapat & Simpan di Kulkas",
-                    instruction = "Tutup wadah rapat-rapat, lalu masukkan ke dalam kulkas (chiller). Diamkan 12 hingga 18 jam.",
-                    targetWaterMl = 300,
+                    instructionTemplate = "Tutup wadah rapat-rapat, lalu masukkan ke dalam kulkas (chiller). Diamkan 12 hingga 18 jam.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 120
                 ),
                 BrewStep(
                     stepNumber = 3,
                     title = "Saring Konsentrat Kopi",
-                    instruction = "Saring cairan kopi menggunakan saringan teh atau kain bersih. Sajikan dingin dengan es batu!",
-                    targetWaterMl = 300,
+                    instructionTemplate = "Saring {totalWater} ml konsentrat kopi menggunakan saringan teh atau kain bersih. Sajikan dingin dengan es batu!",
+                    waterPercentage = 1.0f,
                     durationSeconds = 60
                 )
             )
@@ -180,8 +180,8 @@ object RecipeRepository {
             name = "Vietnam Drip Kopi Susu",
             method = BrewMethod.VIETNAM_DRIP,
             coffeeType = CoffeeType.ROBUSTA,
-            defaultCoffeeGrams = 16f,
-            defaultRatio = 8f, // Kental pekat untuk campur susu
+            defaultCoffeeGrams = 15f,
+            defaultRatio = 8f, // 1:8 = 120ml
             grindSize = "Medium (sedikit lebih kasar dari espresso)",
             waterTemp = "90°C - 94°C",
             isMinimalToolFriendly = false,
@@ -191,29 +191,29 @@ object RecipeRepository {
                 BrewStep(
                     stepNumber = 1,
                     title = "Tuang Susu Kental Manis",
-                    instruction = "Tuang 2 sendok makan susu kental manis (sekitar 25-30g) ke dasar gelas kaca.",
-                    targetWaterMl = 0,
+                    instructionTemplate = "Tuang 2 sendok makan susu kental manis (sekitar 25-30g) ke dasar gelas kaca.",
+                    waterPercentage = 0f,
                     durationSeconds = 20
                 ),
                 BrewStep(
                     stepNumber = 2,
                     title = "Ratakan Kopi & Pasang Tamper",
-                    instruction = "Taruh bubuk kopi di filter Phin, putar saringan tamper secukupnya (jangan terlalu kencang).",
-                    targetWaterMl = 0,
+                    instructionTemplate = "Taruh {coffeeGrams}g bubuk kopi di filter Phin, putar saringan tamper secukupnya (jangan terlalu kencang).",
+                    waterPercentage = 0f,
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 3,
-                    title = "Blooming 20 ml Air Panas",
-                    instruction = "Tuang 20 ml air panas ke filter, biarkan bubuk mengembang selama 30 detik.",
-                    targetWaterMl = 20,
+                    title = "Blooming 20% Air Panas",
+                    instructionTemplate = "Tuang {targetWater} ml air panas ke filter, biarkan bubuk mengembang selama 30 detik.",
+                    waterPercentage = 0.20f,
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 4,
                     title = "Tuang Air Penuh & Tunggu Drip",
-                    instruction = "Tuang air hingga penuh (~110 ml), tutup filter dan nikmati tetesan kopi perlahan selama 4-5 menit.",
-                    targetWaterMl = 130,
+                    instructionTemplate = "Tuang air hingga penuh ({totalWater} ml), tutup filter dan nikmati tetesan kopi perlahan selama 4-5 menit.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 270
                 )
             )
@@ -226,7 +226,7 @@ object RecipeRepository {
             method = BrewMethod.MOKA_POT,
             coffeeType = CoffeeType.ROBUSTA,
             defaultCoffeeGrams = 16f,
-            defaultRatio = 6f, // 1:6 rasio espresso-like
+            defaultRatio = 6f, // 1:6 = 96 ~ 100ml
             grindSize = "Fine (Halus, tapi tidak sehalus tepung)",
             waterTemp = "Air Panas Awal di Boiler",
             isMinimalToolFriendly = false,
@@ -236,29 +236,29 @@ object RecipeRepository {
                 BrewStep(
                     stepNumber = 1,
                     title = "Isi Boiler Bawah dengan Air Panas",
-                    instruction = "Isi tangki bawah dengan air mendidih tepat di bawah katup pengaman (*safety valve*).",
-                    targetWaterMl = 100,
+                    instructionTemplate = "Isi tangki bawah dengan {totalWater} ml air mendidih tepat di bawah katup pengaman (*safety valve*).",
+                    waterPercentage = 1.0f,
                     durationSeconds = 40
                 ),
                 BrewStep(
                     stepNumber = 2,
                     title = "Ratakan Bubuk Kopi di Keranjang",
-                    instruction = "Isi corong filter kopi hingga rata. Ratakan dengan jari tanpa ditekan padat.",
-                    targetWaterMl = 100,
+                    instructionTemplate = "Isi corong filter kopi dengan {coffeeGrams}g bubuk kopi hingga rata tanpa ditekan padat.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 30
                 ),
                 BrewStep(
                     stepNumber = 3,
                     title = "Nyalakan Api Kecil",
-                    instruction = "Tutup rapat bagian atas (gunakan lap karena bawah panas), taruh di atas kompor dengan api kecil.",
-                    targetWaterMl = 100,
+                    instructionTemplate = "Tutup rapat bagian atas (gunakan lap karena bawah panas), taruh di atas kompor dengan api kecil.",
+                    waterPercentage = 1.0f,
                     durationSeconds = 120
                 ),
                 BrewStep(
                     stepNumber = 4,
                     title = "Aliran Kopi Emas (Matikan Saat Berbuih)",
-                    instruction = "Kopi cokelat keemasan akan mengalir ke atas. Begitu mulai mengeluarkan suara mendesis/buih kuning, segera angkat!",
-                    targetWaterMl = 100,
+                    instructionTemplate = "Kopi cokelat keemasan akan mengalir ke atas ({totalWater} ml). Begitu mulai mendesis, segera angkat!",
+                    waterPercentage = 1.0f,
                     durationSeconds = 45
                 )
             )
